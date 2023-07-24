@@ -1,0 +1,13 @@
+Задание 2
+try {
+   int d = 0;
+   double catchedRes1 = intArray[8] / d;
+   System.out.println("catchedRes1 = " + catchedRes1);
+} catch (ArithmeticException e) {
+   System.out.println("Catching exception: " + e);
+}
+---------------------------------------------------------------------------------------------------
+
+1) В блоке 'try':
+        - добавить целочисленный массив, состоящий не менее чем из 9 элементов.
+        - изменить тип для переменной 'catchedRes1' на int для перехвата заданного исключения

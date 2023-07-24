@@ -1,0 +1,31 @@
+Задание 3
+
+public static void main(String[] args) throws Exception {
+   try {
+       int a = 90;
+       int b = 3;
+       System.out.println(a / b);
+       printSum(23, 234);
+       int[] abc = { 1, 2 };
+       abc[3] = 9;
+   } catch (Throwable ex) {
+       System.out.println("Что-то пошло не так...");
+   } catch (NullPointerException ex) {
+       System.out.println("Указатель не может указывать на null!");
+   } catch (IndexOutOfBoundsException ex) {
+       System.out.println("Массив выходит за пределы своего размера!");
+   }
+}
+public static void printSum(Integer a, Integer b) throws FileNotFoundException {
+   System.out.println(a + b);
+}
+-------------------------------------------------------------------------------------
+
+1. В блоке 'try':
+    1.1 Установить ссылочный тип данных
+    1.2 Добавить вывод для начального массива 'abc'
+    1.3 Добавить переменную для индексов массива
+    1.4 Добавить вывод изменения элемента массива по индексу
+    1.5 Добавить вывод для нового массива 'abc' после изменений
+2. Блок 'catch (Throwable ex)' удалить, т.к. 'Throwable ex' является вершиной иерархии исключений
+3. В методе 'printSum' удалить 'throws FileNotFoundException', т.к. данный вброс исключения не нужен
