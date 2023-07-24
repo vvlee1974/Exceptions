@@ -5,10 +5,10 @@ public class Task202 {
         try {
             int[] intArray = {1, 2, 3, 4, 5, 6, 7, 8, 9}; // Добавить начальный массив
             int d = 0;
-            double catchedRes1 = (double) intArray[8] / d; // каст элемента массива
-//            System.out.println("catchedRes1 = " + catchedRes1);
+            int catchedRes1 =  intArray[8] / d; // изменить тип на int целочисленный
+            System.out.println("catchedRes1 = " + catchedRes1);
         } catch (ArithmeticException e) {
-            System.out.println("divided from zero" + e);
+            System.out.println("divided from zero " + e);
         }
     }
 }
