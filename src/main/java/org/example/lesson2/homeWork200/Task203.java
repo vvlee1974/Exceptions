@@ -9,7 +9,6 @@ public class Task203 {
             printSum(23, 234);
             Integer[] abc = {1, 2};
             abc[3] = 9;
-
 //        } catch (Throwable ex) { // Удалить класс высшего порядка для исключений
 //            System.out.println("Что-то пошло не так...");
         } catch (NullPointerException ex) {
