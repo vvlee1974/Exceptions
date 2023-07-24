@@ -10,7 +10,7 @@ public class Task204 {
         System.out.println("Введите текст:");
         String message = scanner.nextLine();
         if (message == null || message.trim().isEmpty()){
-            System.out.println("Пустая строка недопустима. Повторите ввод текста.");
+            throw new RuntimeException("Пустая строка недопустима.");
         }else System.out.println("message = " + message);
     }
 }
