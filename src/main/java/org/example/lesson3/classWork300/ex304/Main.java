@@ -34,6 +34,7 @@ public class Main {
                 {"1", "2", "3", "4"},
                 {"1", "2", "asd", "4"}
         };
+
         System.out.println(checkArray(str));
 
         try {
@@ -51,7 +52,9 @@ public class Main {
     }
 
     public static int checkArray(String[][] str) {
-        if (str.length != 4 || str[0].length != 4) throw new MyArraySizeException(str.length, str[0].length);
+        if (str.length != 4 || str[0].length != 4){
+            throw new MyArraySizeException(str.length, str[0].length);
+        }
         int sum = 0;
         for (int i = 0; i < str[0].length; i++) {
             for (int j = 0; j < str[1].length; j++) {
