@@ -1,23 +1,19 @@
 package org.example.lesson3.homeWork300;
 
-
 import org.example.lesson3.homeWork300.exceptions.*;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 // Приложение должно проверить введенные данные по количеству.
 // Если количество не совпадает с требуемым, вернуть код ошибки, обработать его и показать пользователю сообщение,
 // что он ввел меньше и больше данных, чем требуется.
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         List<String> arrayInput = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
@@ -62,12 +58,12 @@ public class Main {
 
     private static void saveRecord(List<String> arrayInput, String path) {
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (String s : arrayInput) {
-            result += s + "\t";
+            result.append(s).append("\t");
         }
         try {
-            Files.write(Paths.get(path + arrayInput.get(0) + ".txt"), result.getBytes());
+            Files.write(Paths.get(path + arrayInput.get(0) + ".txt"), result.toString().getBytes());
         }catch (IOException e){
             e.printStackTrace();
         }
