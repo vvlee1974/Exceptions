@@ -91,6 +91,7 @@ public class View {
         if (choice <= 2 && choice > 0) {
             switch (choice) {
                 case 1 -> {
+                    checkArray(arrayInput);
                     searchFile(arrayInput, path);
                     System.out.println("Запись добавлена");
                 }
@@ -131,7 +132,26 @@ public class View {
                 }
             }
         }
-        System.out.println("list = " + Arrays.toString(new int[]{list.length}));
+//        System.out.println("list = " + Arrays.toString(new int[]{list.length}));
+    }
+
+    public static void checkArray(List<String> arrayInput) {
+        List<String> errors = new ArrayList<>();
+        for (int i = 0; i < arrayInput.size(); i++) {
+            if (arrayInput.get(i) == null) errors.add(String.valueOf(i));
+        }
+        if (!errors.isEmpty()) {
+            try {
+                throw new RuntimeException();
+            }catch (RuntimeException e){
+                try {
+                   throw new  MyCheckRecord();
+                }catch (MyCheckRecord ex){
+                    System.out.println(ex.getMessage());
+                    System.exit(0);
+                }
+            }
+        }
     }
 
     private static void saveRecord(List<String> arrayInput, String path) {
