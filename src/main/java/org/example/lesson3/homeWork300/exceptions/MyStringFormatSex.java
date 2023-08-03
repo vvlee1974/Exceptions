@@ -7,6 +7,6 @@ public class MyStringFormatSex extends RuntimeException{
      * initialized by a call to {@link #initCause}.
      */
     public MyStringFormatSex() {
-        super("Введены не корректные данные. Повторите ввод f/m");
+        super("-");
     }
 }

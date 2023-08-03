@@ -22,47 +22,62 @@ public class View {
             arrayInput.add(null);
         }
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Входные данные (ФИО ДатаРождения НомерТелефона Пол):");
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
+        System.out.println("Введите 4 вида данных:");
+        System.out.println("----------------------");
+        System.out.println("ФИО (Фамилия Имя Отчество)");
+        System.out.println("ДатаРождения (dd.mm.yyyy)");
+        System.out.println("НомерТелефона (+7-xxx-xxx-xx-xx)");
+        System.out.println("Пол (m / f)");
+        System.out.println("----------------------------------------------------------------");
+        int n = 1;
+        while (n <= 4) {
+            System.out.println("Введите параметр № " + n + ":");
+            String input = scanner.nextLine();
+            checkStringEmpty(input);
+            String checkInput = getFullName(input);
+            String checkInput2 = getDate(input);
+            String checkInput3 = getPhoneNumber(input);
+            String checkInput4 = getInfoSex(input);
 
-        System.out.println("Введите - Фамилия Имя Отчество:");
-        String input = scanner.nextLine();
-        checkStringEmpty(input);
-        String checkInput = getFullName(input);
-        try {
-            assert checkInput != null;
-            String[] strings = checkInput.split(" ");
-            int i = 0;
-            for (String string : strings) {
-                arrayInput.set(i, string);
-                i++;
+            if (checkInput != null) {
+                System.out.println("Это - ФИО.");
+                System.out.println("_______________________________");
+                try {
+                    String[] strings = checkInput.split(" ");
+                    int i = 0;
+                    for (String string : strings) {
+                        arrayInput.set(i, string);
+                        i++;
+                    }
+                } catch (NullPointerException e) {
+                    try {
+                        throw new MyNullPointerEx();
+                    } catch (MyNullPointerEx ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
             }
-        } catch (NullPointerException e) {
-            try {
-                throw new MyNullPointerEx();
-            }catch (MyNullPointerEx ex){
-                System.out.println(ex.getMessage());
+            if (checkInput2 != null) {
+                System.out.println("Это - ДатаРождения.");
+                System.out.println("_______________________________");
+                arrayInput.set(3, checkInput2);
             }
+            if (checkInput3 != null) {
+                System.out.println("Это - НомерТелефона.");
+                System.out.println("_______________________________");
+                arrayInput.set(4, checkInput3);
+            }
+            if (checkInput4 != null) {
+                System.out.println("Это - Пол.");
+                System.out.println("_______________________________");
+                arrayInput.set(5, checkInput4);
+            }
+            n++;
         }
-        System.out.println("Введите - Дату Рождения (дд/мм/гггг):");
-        String input1 = scanner.nextLine();
-        checkStringEmpty(input1);
-        arrayInput.set(3, getDate(input1));
-
-        System.out.println("Введите - Номер Телефона:");
-        String input2 = scanner.nextLine();
-        checkStringEmpty(input2);
-        arrayInput.set(4, getPhoneNumber(input2));
-
-        System.out.println("Введите - Пол (f/m):");
-        String input3 = scanner.nextLine();
-        checkStringEmpty(input3);
-        arrayInput.set(5, getInfoSex(input3));
-
         System.out.println();
         System.out.println("_______________________________");
         System.out.println("Текущая запись:");
-
         for (String str : arrayInput) {
             System.out.print(Arrays.toString(new String[]{str}));
         }
@@ -72,10 +87,10 @@ public class View {
         System.out.println("2 - Начать заново");
         System.out.println("_______________________________");
         int choice = scanner.nextInt();
+        String path = "C:\\Users\\vvlee\\Моя учёба_GeekBrans\\Exceptions\\Seminars\\src\\main\\java\\org\\example\\lesson3\\homeWork300\\data\\";
         if (choice <= 2 && choice > 0) {
             switch (choice) {
                 case 1 -> {
-                    String path = "C:\\Users\\vvlee\\Моя учёба_GeekBrans\\Exceptions\\Seminars\\src\\main\\java\\org\\example\\lesson3\\homeWork300\\data\\";
                     searchFile(arrayInput, path);
                     System.out.println("Запись добавлена");
                 }
@@ -133,7 +148,6 @@ public class View {
         }
     }
 
-
     private static void checkStringEmpty(String input) {
         if (input.isEmpty()) {
             try {
@@ -154,8 +168,9 @@ public class View {
         String regex = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input2);
-        if (matcher.find()) {
+        if (matcher.find() && input2.length() > 10) {
             result = matcher.group();
+
             return result;
         } else {
             try {
@@ -177,6 +192,7 @@ public class View {
 
         if (m.find()) {
             allMatches = m.group();
+
             return allMatches;
         } else {
             try {
@@ -196,6 +212,7 @@ public class View {
         String input = string.trim().replaceAll("\\s+", " ");
         String[] str = input.split(" ");
         if (str.length == 3) {
+
             return input;
         } else {
             try {
@@ -215,8 +232,9 @@ public class View {
         String[] str3 = input3.split(" ");
         String sex;
         for (String s : str3) {
-            if (str3.length == 1 && (s.contains("f") || s.contains("m"))) {
+            if (str3.length == 1 && (s.equals("f") || s.equals("m"))) {
                 sex = s;
+
                 return sex;
             } else {
                 try {
@@ -233,4 +251,3 @@ public class View {
         return null;
     }
 }
-
