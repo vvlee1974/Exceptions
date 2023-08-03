@@ -17,6 +17,7 @@ public class View {
     }
 
     public void run() {
+        String path = "C:\\Users\\vvlee\\Моя учёба_GeekBrans\\Exceptions\\Seminars\\src\\main\\java\\org\\example\\lesson3\\homeWork300\\data\\";
         List<String> arrayInput = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             arrayInput.add(null);
@@ -87,7 +88,6 @@ public class View {
         System.out.println("2 - Начать заново");
         System.out.println("_______________________________");
         int choice = scanner.nextInt();
-        String path = "C:\\Users\\vvlee\\Моя учёба_GeekBrans\\Exceptions\\Seminars\\src\\main\\java\\org\\example\\lesson3\\homeWork300\\data\\";
         if (choice <= 2 && choice > 0) {
             switch (choice) {
                 case 1 -> {
