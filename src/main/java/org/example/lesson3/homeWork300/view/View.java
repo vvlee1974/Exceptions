@@ -16,7 +16,9 @@ public class View {
     public View() {
     }
 
+
     public void run() {
+//        String path = "C:\\Users\\Ли_ВВ\\IdeaProjects\\Exceptions\\src\\main\\java\\org\\example\\lesson1\\finalWork\\data\\";
         String path = "C:\\Users\\vvlee\\Моя учёба_GeekBrans\\Exceptions\\Seminars\\src\\main\\java\\org\\example\\lesson3\\homeWork300\\data\\";
         List<String> arrayInput = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
@@ -25,28 +27,30 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("----------------------------------------------------------------");
         System.out.println("Введите 4 вида данных:");
-        System.out.println("----------------------");
-        System.out.println("ФИО (Фамилия Имя Отчество)");
-        System.out.println("ДатаРождения (dd.mm.yyyy)");
-        System.out.println("НомерТелефона (+7-xxx-xxx-xx-xx)");
-        System.out.println("Пол (m / f)");
+        System.out.println("======================");
+        System.out.println("# ФИО (Фамилия Имя Отчество)");
+        System.out.println("# ДатаРождения (dd.mm.yyyy)");
+        System.out.println("# НомерТелефона (+7-xxx-xxx-xx-xx)");
+        System.out.println("# Пол (m / f)");
         System.out.println("----------------------------------------------------------------");
         int n = 1;
         while (n <= 4) {
             System.out.println("Введите параметр № " + n + ":");
+            System.out.println("=====================");
             String input = scanner.nextLine();
             checkStringEmpty(input);
             String checkInput = getFullName(input);
             String checkInput2 = getDate(input);
             String checkInput3 = getPhoneNumber(input);
             String checkInput4 = getInfoSex(input);
+            System.out.println("----------------------------------------------------------------");
 
             if (checkInput != null) {
                 System.out.println("Это - ФИО.");
-                System.out.println("_______________________________");
+                System.out.println("----------------------------------------------------------------");
+                String[] strings = checkInput.split(" ");
+                int i = 0;
                 try {
-                    String[] strings = checkInput.split(" ");
-                    int i = 0;
                     for (String string : strings) {
                         arrayInput.set(i, string);
                         i++;
@@ -61,32 +65,32 @@ public class View {
             }
             if (checkInput2 != null) {
                 System.out.println("Это - ДатаРождения.");
-                System.out.println("_______________________________");
+                System.out.println("----------------------------------------------------------------");
                 arrayInput.set(3, checkInput2);
             }
             if (checkInput3 != null) {
                 System.out.println("Это - НомерТелефона.");
-                System.out.println("_______________________________");
+                System.out.println("----------------------------------------------------------------");
                 arrayInput.set(4, checkInput3);
             }
             if (checkInput4 != null) {
                 System.out.println("Это - Пол.");
-                System.out.println("_______________________________");
+                System.out.println("----------------------------------------------------------------");
                 arrayInput.set(5, checkInput4);
             }
             n++;
         }
         System.out.println();
-        System.out.println("_______________________________");
+        System.out.println("================================================");
         System.out.println("Текущая запись:");
         for (String str : arrayInput) {
             System.out.print(Arrays.toString(new String[]{str}));
         }
         System.out.println();
-        System.out.println("_______________________________");
+        System.out.println("----------------------------------------------------------------");
         System.out.println("1 - Добавить запись");
         System.out.println("2 - Начать заново");
-        System.out.println("_______________________________");
+        System.out.println("----------------------------------------------------------------");
         int choice = scanner.nextInt();
         if (choice <= 2 && choice > 0) {
             switch (choice) {
@@ -143,10 +147,10 @@ public class View {
         if (!errors.isEmpty()) {
             try {
                 throw new RuntimeException();
-            }catch (RuntimeException e){
+            } catch (RuntimeException e) {
                 try {
-                   throw new  MyCheckRecord();
-                }catch (MyCheckRecord ex){
+                    throw new MyCheckRecord();
+                } catch (MyCheckRecord ex) {
                     System.out.println(ex.getMessage());
                     System.exit(0);
                 }
@@ -190,7 +194,6 @@ public class View {
         Matcher matcher = pattern.matcher(input2);
         if (matcher.find() && input2.length() > 10) {
             result = matcher.group();
-
             return result;
         } else {
             try {
@@ -212,7 +215,6 @@ public class View {
 
         if (m.find()) {
             allMatches = m.group();
-
             return allMatches;
         } else {
             try {
@@ -232,7 +234,6 @@ public class View {
         String input = string.trim().replaceAll("\\s+", " ");
         String[] str = input.split(" ");
         if (str.length == 3) {
-
             return input;
         } else {
             try {
@@ -251,12 +252,11 @@ public class View {
     private static String getInfoSex(String input3) {
         String[] str3 = input3.split(" ");
         String sex;
-        for (String s : str3) {
-            if (str3.length == 1 && (s.equals("f") || s.equals("m"))) {
-                sex = s;
-
+        if (str3.length == 1) {
+            if (input3.equals("f") || input3.equals("m")) {
+                sex = input3;
                 return sex;
-            } else {
+            }else {
                 try {
                     throw new RuntimeException();
                 } catch (RuntimeException e) {
@@ -267,7 +267,7 @@ public class View {
                     }
                 }
             }
-        }
+        }else System.out.println("Некорректный ввод параметра - Пол.");
         return null;
     }
 }
